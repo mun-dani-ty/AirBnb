@@ -3,7 +3,7 @@
 ## API Documentation
 
 ## DATABASE SCHEMA
-![Schema](AirBnbSchema.png)
+![Schema](./assets/AirBnbSchema.png)
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
