@@ -1,5 +1,6 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
+const { restoreUser } = require('../../utils/auth')
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 //NEED TO ADD THIS TOO
@@ -8,7 +9,7 @@ const reviewsRouter = require('./reviews.js')
 const bookingsRouter = require('./bookings.js')
 const spotImagesRouter = require('./spot-images')
 const reviewImagesRouter = require('./review-images')
-const { restoreUser } = require('../../utils/auth')
+
 
 // GET /api/restore-user
 router.use(restoreUser);
@@ -33,10 +34,33 @@ router.use('/review-images', reviewImagesRouter);
 //for our spot related route handlers and we would have a spots.js in our api
 
 
-router.post('/test', (req, res) => {
-  res.json({ requestBody: req.body });
-});
+// router.post('/test', (req, res) => {
+//   res.json({ requestBody: req.body });
+// });
 
+//TESTS
+// // GET /api/require-auth
+// const { requireAuth } = require('../../utils/auth.js');
+// router.get(
+//   '/require-auth',
+//   requireAuth,
+//   (req, res) => {
+//     return res.json(req.user);
+//   }
+// );
+
+// // GET /api/set-token-cookie
+// const { setTokenCookie } = require('../../utils/auth.js');
+// const { User } = require('../../db/models');
+// router.get('/set-token-cookie', async (_req, res) => {
+//   const user = await User.findOne({
+//     where: {
+//       username: 'Demo-lition'
+//     }
+//   });
+//   setTokenCookie(res, user);
+//   return res.json({ user });
+// });
 
 
 
@@ -53,27 +77,4 @@ module.exports = router;
 // //To test the API router
 // router.post('/test', function(req, res) {
 //     res.json({ requestBody: req.body });
-// });
-
-// // GET /api/require-auth
-// const { requireAuth } = require('../../utils/auth.js');
-// router.get(
-//   '/require-auth',
-//   requireAuth,
-//   (req, res) => {
-//     return res.json(req.user);
-//   }
-// );
-
-// // GET /api/set-token-cookie
-// const { setTokenCookie } = require('../../utils/auth.js');
-// const { User } = require('../../db/models');
-// router.get('/set-token-cookie', async (_req, res) => {
-//   const user = await User.findOne({
-//       where: {
-//         username: 'Demo-lition'
-//       }
-//     });
-//   setTokenCookie(res, user);
-//   return res.json({ user });
 // });
