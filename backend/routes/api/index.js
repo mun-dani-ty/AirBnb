@@ -1,8 +1,8 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
-const { restoreUser } = require('../../utils/auth')
 const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
+const { restoreUser } = require("../../utils/auth.js");
 //NEED TO ADD THIS TOO
 const spotsRouter = require('./spots.js')
 const reviewsRouter = require('./reviews.js')
@@ -11,32 +11,34 @@ const spotImagesRouter = require('./spot-images')
 const reviewImagesRouter = require('./review-images')
 
 
-// GET /api/restore-user
+// Connect restoreUser middleware to the API router
+// If current user session is valid, set req.user to the user in the database
+// If current user session is not valid, set req.user to null
 router.use(restoreUser);
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-//now working on kanban objectives
-router.use('/spots', spotsRouter);
+// router.use('/spots', spotsRouter);
 
-router.use('/reviews', reviewsRouter);
+// router.use('/reviews', reviewsRouter);
 
-router.use('/bookings', bookingsRouter);
+// router.use('/bookings', bookingsRouter);
 
-router.use('/spot-images', spotImagesRouter);
+// router.use('/spot-images', spotImagesRouter);
 
-router.use('/review-images', reviewImagesRouter);
+// router.use('/review-images', reviewImagesRouter);
 
 //this line is from First Steps after authme (get all spots)
 // router.use('/spots', spotsRouter);
 //for our spot related route handlers and we would have a spots.js in our api
 
 
-// router.post('/test', (req, res) => {
-//   res.json({ requestBody: req.body });
-// });
+router.post('/test', (req, res) => {
+    res.json({ requestBody: req.body });
+});
+
 
 //TESTS
 // // GET /api/require-auth
