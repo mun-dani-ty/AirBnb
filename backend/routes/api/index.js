@@ -29,9 +29,9 @@ router.use('/users', usersRouter);
 //for our spot related route handlers and we would have a spots.js in our api
 
 
-router.post('/test', (req, res) => {
-    res.json({ requestBody: req.body });
-});
+// router.post('/test', (req, res) => {
+//     res.json({ requestBody: req.body });
+// });
 
 
 //TESTS
