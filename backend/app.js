@@ -102,8 +102,5 @@ app.use((err, _req, res, _next) => {
     });
 });
 
-//The last error handler is for formatting all the errors before returning a JSON response. It will include the error message, the errors array, and the error stack trace (if the environment is in development) with the status code of the error message.
-
-
 //Export the app
 module.exports = app;
