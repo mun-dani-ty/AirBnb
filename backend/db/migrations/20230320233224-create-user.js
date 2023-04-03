@@ -1,5 +1,7 @@
-'use strict';
+//ReadMe code
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
+
 
 let options = {};
 if (process.env.NODE_ENV === 'production') {
@@ -7,8 +9,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+  up: async (queryInterface, Sequelize) => {
+    return queryInterface.createTable("Users", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,12 +18,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       firstName: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false
       },
       lastName: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
+        type: Sequelize.STRING,
+        allowNull: false
       },
       username: {
         type: Sequelize.STRING(30),
@@ -49,7 +51,7 @@ module.exports = {
       }
     }, options);
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
+  down: async (queryInterface, Sequelize) => {
+    return queryInterface.dropTable("Users", options);
   }
 };
