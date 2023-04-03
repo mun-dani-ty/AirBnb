@@ -11,16 +11,22 @@ module.exports = {
     options.tableName = 'Users';
     return queryInterface.bulkInsert(options, [
       {
+        firstName: 'Demo',
+        lastName: 'Lition',
         email: 'demo@mundanity.io',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
+        firstName: 'Mus',
+        lastName: 'Schipperke',
         email: 'mus@mundanity.io',
         username: 'musiemu',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
+        firstName: 'Misty',
+        lastName: 'Bean',
         email: 'misty@mundanity.io',
         username: 'mistybean',
         hashedPassword: bcrypt.hashSync('password3')
