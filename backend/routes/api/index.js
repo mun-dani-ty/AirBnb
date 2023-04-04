@@ -1,76 +1,30 @@
 // backend/routes/api/index.js
 const router = require('express').Router();
 const sessionRouter = require('./session.js');
-const usersRouter = require('./users.js');
-const { restoreUser } = require("../../utils/auth.js");
-//NEED TO ADD THIS TOO
 
-// Connect restoreUser middleware to the API router
-// If current user session is valid, set req.user to the user in the database
-// If current user session is not valid, set req.user to null
+const usersRouter = require('./users.js');
+const spotsRouter = require('./spots.js')
+const reviewsRouter = require('./reviews.js')
+const bookingsRouter = require('./bookings.js')
+const spotImagesRouter = require('./spot-images')
+const reviewImagesRouter = require('./review-images')
+const { restoreUser } = require('../../utils/auth')
+
+// GET /api/restore-user
 router.use(restoreUser);
+
+router.use('/spots', spotsRouter)
+
+router.use('/reviews', reviewsRouter)
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-// router.use('/spots', spotsRouter);
+router.use('/bookings', bookingsRouter)
 
-// router.use('/reviews', reviewsRouter);
+router.use('/spot-images', spotImagesRouter)
 
-// router.use('/bookings', bookingsRouter);
-
-// router.use('/spot-images', spotImagesRouter);
-
-// router.use('/review-images', reviewImagesRouter);
-
-//this line is from First Steps after authme (get all spots)
-// router.use('/spots', spotsRouter);
-//for our spot related route handlers and we would have a spots.js in our api
-
-
-// router.post('/test', (req, res) => {
-//     res.json({ requestBody: req.body });
-// });
-
-
-//TESTS
-// // GET /api/require-auth
-// const { requireAuth } = require('../../utils/auth.js');
-// router.get(
-//   '/require-auth',
-//   requireAuth,
-//   (req, res) => {
-//     return res.json(req.user);
-//   }
-// );
-
-// // GET /api/set-token-cookie
-// const { setTokenCookie } = require('../../utils/auth.js');
-// const { User } = require('../../db/models');
-// router.get('/set-token-cookie', async (_req, res) => {
-//   const user = await User.findOne({
-//     where: {
-//       username: 'Demo-lition'
-//     }
-//   });
-//   setTokenCookie(res, user);
-//   return res.json({ user });
-// });
-
-
+router.use('/review-images', reviewImagesRouter)
 
 module.exports = router;
-
-//The tests below are no longer needed as they all work
-// router.get(
-//   '/restore-user',
-//   (req, res) => {
-//     return res.json(req.user);
-//   }
-// );
-
-// //To test the API router
-// router.post('/test', function(req, res) {
-//     res.json({ requestBody: req.body });
-// });
